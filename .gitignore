@@ -6,6 +6,7 @@ testing.js
 .env.production.local
 .env.local
 list_of_inputs.txt
+output_qr.png
 
 node_modules
 testing
