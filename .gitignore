@@ -1,5 +1,5 @@
 testing.js
-*.md
+notes*.md
 .env
 .env.development.local
 .env.test.local
