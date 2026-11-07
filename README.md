@@ -1,9 +1,9 @@
 # undefined-js-journey
 
-```python
-while (learning) {
-    code();
-    practice();
-    repeat();
+```js
+while (learning === true) {
+  code();
+  practice();
+  repeat();
 }
 ```
