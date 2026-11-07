@@ -5,6 +5,7 @@ testing.js
 .env.test.local
 .env.production.local
 .env.local
+list_of_inputs.txt
 
 node_modules
 testing
