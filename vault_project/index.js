@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -10,7 +10,7 @@ const PORT = 3000;
 
 let isAuthorized = false;
 
-function passwordChecker(req, res, next) {
+function checkPassword(req, res, next) {
   if (req.body.user_password === "ILoveProgramming") {
     isAuthorized = true;
   }
@@ -22,12 +22,13 @@ app.get("/", (req, res) => {
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(passwordChecker);
+app.use(checkPassword);
 app.post("/check", (req, res) => {
   if ((isAuthorized = true)) {
     res.sendFile(__dirname + "/secret.html");
   }
-  console.log(req.body.user_password);
 });
 
-app.listen(PORT, () => console.log(`server started at ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`server started at ${PORT}`);
+});
