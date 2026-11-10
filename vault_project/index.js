@@ -12,21 +12,29 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var isAuthorized = false;
 
-function checkPassword(req, res, next) {
-  const password = req.body["user_password"];
-  if (password === "ILoveProgramming") {
-    isAuthorized = true;
-  }
-  next();
-}
-app.use(checkPassword);
+// function checkPassword(req, res, next) {
+// const password = req.body["user_password"];
+// if (password === "ILoveProgramming") {
+// isAuthorized = true;
+// }
+// next();
+// }
+// app.use(checkPassword);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+// app.post("/check", (req, res) => {
+// if (isAuthorized) {
+// res.sendFile(__dirname + "/secret.html");
+// } else {
+// res.sendFile(__dirname + "/index.html");
+// }
+// });
+
 app.post("/check", (req, res) => {
-  if (isAuthorized) {
+  if (req.body["user_password"] === "ILoveProgramming") {
     res.sendFile(__dirname + "/secret.html");
   } else {
     res.sendFile(__dirname + "/index.html");
