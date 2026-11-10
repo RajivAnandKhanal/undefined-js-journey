@@ -8,23 +8,25 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 3000;
 
-let isAuthorized = false;
+app.use(bodyParser.urlencoded({ extended: true }));
+
+var isAuthorized = false;
 
 function checkPassword(req, res, next) {
-  if (req.body.user_password === "ILoveProgramming") {
+  const password = req.body["user_password"];
+  if (password === "ILoveProgramming") {
     isAuthorized = true;
   }
   next();
 }
+app.use(checkPassword);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(checkPassword);
 app.post("/check", (req, res) => {
-  if ((isAuthorized = true)) {
+  if (isAuthorized) {
     res.sendFile(__dirname + "/secret.html");
   } else {
     res.sendFile(__dirname + "/index.html");
