@@ -26,6 +26,8 @@ app.use(checkPassword);
 app.post("/check", (req, res) => {
   if ((isAuthorized = true)) {
     res.sendFile(__dirname + "/secret.html");
+  } else {
+    res.sendFile(__dirname + "/index.html");
   }
 });
 
